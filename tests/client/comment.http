@@ -1,0 +1,33 @@
+@url = http://localhost:8000/api/comment
+
+
+GET {{ url }}/blog/1 HTTP/1.1
+    Content-Type: application/json
+####
+ 
+  
+GET {{ url }}/1/blog HTTP/1.1
+    Content-Type: application/json
+####
+
+  
+GET {{ url }}/blogs HTTP/1.1
+    Content-Type: application/json
+####
+
+
+
+POST  http://localhost:8000/api/oauth/google HTTP/1.1
+    Content-Type: application/json
+
+{
+    "name": "Ocph23 Test",
+    "email": "ocph23.test@gmail.com",
+    "avatar": "https://lh3.googleusercontent.com/a/ACg8ocL4dG1E5yFO6DghIi7C4heHJZiZIDY7nqNnT5TocjO71xS-3Q=s96-c",
+    "gauth_id": "109822704955600728610",
+    "role": "guest",
+    "status": "true",
+    "gauth_type": "google"
+}
+
+####

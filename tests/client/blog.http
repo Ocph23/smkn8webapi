@@ -1,0 +1,16 @@
+@url = http://localhost:8000/api/client
+
+
+GET {{ url }}/carousel HTTP/1.1
+    Content-Type: application/json
+####
+ 
+  
+GET {{ url }}/1/blog HTTP/1.1
+    Content-Type: application/json
+####
+
+  
+GET {{ url }}/blogs HTTP/1.1
+    Content-Type: application/json
+####

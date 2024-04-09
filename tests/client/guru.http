@@ -1,0 +1,22 @@
+@url = http://localhost:8000/api/client
+
+
+GET {{ url }}/guru HTTP/1.1
+    Content-Type: application/json
+####
+ 
+
+
+POST http://localhost:8000/api/oauth/google HTTP/1.1
+Content-Type: application/json
+
+ {
+    "avatar":"https://lh3.googleusercontent.com/a/ACg8ocL4dG1E5yFO6DghIi7C4heHJZiZIDY7nqNnT5TocjO71xS-3Q=s96-c",
+    "email":"ocph23.test@gmail.com",
+    "gauth_id":"109822704955600728610",
+    "gauth_type":"google",
+    "name":"Ocph23 Test",
+    "role":"guest",
+    "status":"true"
+ }
+  ###
