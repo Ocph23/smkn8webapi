@@ -21,6 +21,8 @@ class CommentController extends Controller
         
         $collection = collect($data)->map(function($p){
                 $p->id = (int)$p->id;
+                $p->parent = (int)$p->parent;
+                $p->blogid = (int)$p->blogid;
                 return $p;
         });        
 
