@@ -18,7 +18,13 @@ class CommentController extends Controller
             ;
 
         $data = $query->get();
-        // Comment::where("blogid", $id)->get();
+        
+        $collection = collect($data)->map(function($p){
+                $p->id = (int)$p->id;
+                return $p;
+        });        
+
+
         return response()->json([
             'status' => 'success',
             'data' => $data
