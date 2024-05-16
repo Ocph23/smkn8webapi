@@ -12,6 +12,7 @@ class Blog extends Model
     protected $fillable = [
         'id',
         'judul',
+        'ringkasan',
         'konten',
         'gambar',
         'kategori',

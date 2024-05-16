@@ -19,7 +19,12 @@
                         </label>
                         <input type="text" name="judul" placeholder="nama menu" value="{{$model->judul}}" class="w-full rounded border-[1.5px] border-stroke bg-transdata px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary">
                     </div>
-
+                    <div class="mb-4.5">
+                        <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                            Ringkasan <span class="text-meta-1">*</span>
+                        </label>
+                        <textarea name="ringkasan" placeholder="ringkasan" value class="w-full h-48 rounded border-[1.5px] border-stroke bg-transdata px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary">{{$model->ringkasan}}</textarea>
+                    </div>
                     <div class="mb-4.5">
                         <label class="mb-3 block text-sm font-medium text-black dark:text-white">
                             Kontent/Isi <span class="text-meta-1">*</span>

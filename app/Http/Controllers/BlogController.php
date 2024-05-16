@@ -36,12 +36,14 @@ class BlogController extends Controller
 
             $request->validate([
                 'judul' => 'required|max:255',
+                'ringkasan' => 'required',
                 'konten' => 'required',
                 'kategori' => 'required|max:255',
             ]);
 
             Blog::create([
                 'judul' => $request->judul,
+                'ringkasan' => $request->ringkasan,
                 'konten' => htmlentities($request->konten),
                 'gambar' => $request->gambar,
                 'user_id' => Auth::id(),
@@ -63,6 +65,7 @@ class BlogController extends Controller
 
             $request->validate([
                 'judul' => 'required|max:255',
+                'ringkasan' => 'required',
                 'konten' => 'required',
                 'kategori' => 'required|max:255',
             ]);
@@ -70,6 +73,7 @@ class BlogController extends Controller
             $data = Blog::find($request->id);
             if ($data) {
                 $data->judul = $request->judul;
+                $data->ringkasan = $request->ringkasan;
                 $data->konten = $request->konten;
                 $data->gambar = $request->gambar;
                 $data->publish = $request->publish?1:0;

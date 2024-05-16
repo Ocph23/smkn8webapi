@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
+            $table->string('ringkasan');
             $table->longText('konten');
             $table->string('kategori');
             $table->text('gambar')->nullable();
