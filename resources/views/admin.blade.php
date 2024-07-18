@@ -259,6 +259,7 @@
       tinycomments_mode: 'embedded',
       tinycomments_author: 'Author name',
       image_uploadtab: true,
+      relative_urls : "false", 
       mergetags_list: [{
           value: 'First.Name',
           title: 'First Name'
