@@ -17,7 +17,7 @@ class GalleryController extends Controller
     public function store(Request $request)
     {
         try {
-            
+
             $request->validate([
                 'title' => 'required|max:255',
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp4,webm |max:20480',
@@ -33,6 +33,21 @@ class GalleryController extends Controller
                 'filename' => $filename
             ]);
             Alert::success('Berhasil upload gambar');
+            return redirect(route('gallery.index'));
+        } catch (\Throwable $th) {
+            Alert::error($th->getMessage());
+            return back()->withErrors(['error' => $th->getMessage()]);
+        }
+    }
+
+
+    public function delete(Request $request)
+    {
+        try {
+
+            $GambarFile = Gambar::where('filename', $request->filename)->first();
+            $GambarFile->delete();
+            Alert::success('Berhasil delete gambar');
             return redirect(route('gallery.index'));
         } catch (\Throwable $th) {
             Alert::error($th->getMessage());

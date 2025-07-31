@@ -56,6 +56,7 @@ Route::middleware(['auth', RoleMiddleware::class])->group(function () {
     //images
     Route::get('/admin/images', [GalleryController::class, 'index'])->name('admin.images');
     Route::get('/admin/images/upload', [GalleryController::class, 'create'])->name('admin.images.upload');
+    Route::get('/admin/images/{filename}/delete', [GalleryController::class, 'delete'])->name('admin.images.delete');
     Route::post('/admin/images', [GalleryController::class, 'store'])->name('admin.images.store');
 
     //guru
@@ -81,7 +82,7 @@ Route::middleware('auth')->group(function () {
 
 
 
-Route::get('oauth/google', [\App\Http\Controllers\OauthController::class, 'redirectToProvider'])->name('oauth.google');  
+Route::get('oauth/google', [\App\Http\Controllers\OauthController::class, 'redirectToProvider'])->name('oauth.google');
 Route::get('oauth/google/callback', [\App\Http\Controllers\OauthController::class, 'handleProviderCallback'])->name('oauth.google.callback');
 
 require __DIR__ . '/auth.php';

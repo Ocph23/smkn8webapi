@@ -19,3 +19,12 @@ window.toggleModalx = (id) => {
     modal.classList.toggle("opacity-0");
     modal.classList.toggle("pointer-events-none");
 };
+
+
+window.deleteImage = (data) => {
+    if (confirm("Yakin hapus file :" + data + "?")) {
+        window.location.href = "/admin/images/" + data + "/delete";
+    } else {
+
+    }
+}
