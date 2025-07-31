@@ -15,10 +15,18 @@ function toggleModal() {
 }
 
 window.toggleModalx = (id) => {
-    var modal = document.getElementById(id);
-    modal.classList.toggle("opacity-0");
-    modal.classList.toggle("pointer-events-none");
+    var modal = document.getElementById('imageModal');
+    var img = document.getElementById('picture');
+    img.src = id;
+    modal.classList.toggle("hidden");
 };
+
+
+window.closeModal = () => {
+    var modal = document.getElementById('imageModal');
+    modal.classList.toggle("hidden");
+};
+
 
 
 window.deleteImage = (data) => {
@@ -28,3 +36,4 @@ window.deleteImage = (data) => {
 
     }
 }
+

@@ -64,8 +64,10 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
                                         class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
                                         href="calendar.html"
                                         @click="selected = (selected === 'Calendar' ? '':'Calendar')"
-                                        :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Calendar') && (
-                                                page === 'calendar') }">
+                                        :class="{
+                                            'bg-graydark dark:bg-meta-4': (selected === 'Calendar') && (
+                                                page === 'calendar')
+                                        }">
                                         <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18"
                                             fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -160,8 +162,10 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
                                 <a href="{{ route('admin.users') }}"
                                     class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
                                     href="profile.html" @click="selected = (selected === 'Profile' ? '':'Profile')"
-                                    :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Profile') && (
-                                        page === 'profile') }"
+                                    :class="{
+                                        'bg-graydark dark:bg-meta-4': (selected === 'Profile') && (
+                                            page === 'profile')
+                                    }"
                                     :class="page === 'profile' && 'bg-graydark'">
                                     <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18"
                                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -325,8 +329,9 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
 
             <!-- ===== Main Content Start ===== -->
             <main>
-                <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+                <div class="mx-auto max-w-screen-2xl ">
                     @yield('content')
+
                 </div>
             </main>
             <!-- ===== Main Content End ===== -->
@@ -335,43 +340,41 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
     </div>
     <!-- ===== Page Wrapper End ===== -->
 
-    <script src=" {{ asset('js/bundle.js') }}"></script>
+
+
+
+
     <script src=" {{ asset('js/app.js') }}"></script>
-    <!-- Place the first <script>
-        tag in your HTML 's <head> --> <
-            script src =
-            "https://cdn.tiny.cloud/1/lwhucj9f45uana41awc6buuw14f2ncf0rrcvojsmkw3sshun/tinymce/7/tinymce.min.js"
-        referrerpolicy = "origin" >
+    <script src=" {{ asset('js/bundle.js') }}"></script>
+    <script src="https://cdn.tiny.cloud/1/lwhucj9f45uana41awc6buuw14f2ncf0rrcvojsmkw3sshun/tinymce/7/tinymce.min.js"
+        referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+            selector: 'textarea#tinymc',
+            plugins: 'anchor code autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount  linkchecker ',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image table mergetags | addcomment showcomments | spellcheckdialog typography | align lineheight |  numlist bullist indent outdent | emoticons charmap | removeformat |image',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            image_uploadtab: true,
+            relative_urls: false,
+            convert_urls: false,
+            mergetags_list: [{
+                    value: 'First.Name',
+                    title: 'First Name'
+                },
+                {
+                    value: 'Email',
+                    title: 'Email'
+                },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject(
+                "See docs to implement AI Assistant")),
+        });
     </script>
 
-  <!-- Place the following <script>
-      and < textarea > tags your HTML 's <body> --> <
-          script >
-          tinymce.init({
-              selector: 'textarea#tinymc',
-              plugins: 'anchor code autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount  linkchecker ',
-              toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image table mergetags | addcomment showcomments | spellcheckdialog typography | align lineheight |  numlist bullist indent outdent | emoticons charmap | removeformat |image',
-              tinycomments_mode: 'embedded',
-              tinycomments_author: 'Author name',
-              image_uploadtab: true,
-              relative_urls: false,
-              convert_urls: false,
-              mergetags_list: [{
-                      value: 'First.Name',
-                      title: 'First Name'
-                  },
-                  {
-                      value: 'Email',
-                      title: 'Email'
-                  },
-              ],
-              ai_request: (request, respondWith) => respondWith.string(() => Promise.reject(
-                  "See docs to implement AI Assistant")),
-          });
-  </script>
 
-
-  @include('sweetalert::alert')
+    @include('sweetalert::alert')
 
 </body>
 

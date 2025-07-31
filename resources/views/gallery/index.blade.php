@@ -2,21 +2,50 @@
 @extends('admin')
 
 @section('content')
-    <div class="container">
+    <div id="imageModal" class="modal fixed hidden  flex items-center justify-center bg-red-500 "
+        style="height: 75vh; width:75%">
+        <div class="shadow-md bg-white" style="width: 50vw; height: 50vh">
+            <!-- Add margin if you want to see grey behind the modal-->
+            <div class="shadow-md bg-white  p-5">
+                <!-- Add margin if you want to see grey behind the modal-->
+                <div class="mx-auto h-auto text-left p-4">
+
+                    <div class="flex justify-between   overflow-y-auto items-center pb-2">
+                        <p class="text-xl font-bold">Image Preview </p>
+                        <div onclick="closeModal()"
+                            class="modal-close  top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-black text-sm z-50">
+                            <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18"
+                                height="18" viewBox="0 0 18 18">
+                                <path
+                                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                                </path>
+                            </svg>
+                            (Esc)
+                        </div>
+                    </div>
+
+                    <div id="pic" class="bg-red-500 h-full w-full shadow-md p-5" style="width: 100%; height: 100%">
+                        <img id="picture" stle="width:100%; height:80%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
         <div class="flex justify-between mb-5">
             <p class="border-b-8 border-lime-600 font-bold text-3xl uppercase">Image Gallery</p>
             <a href=" {{ route('admin.images.upload') }}"
                 class="text-white bg-teal-500 shadow-sm p-2 shadow-teal-600">Upload</a>
         </div>
         <div class="row">
-            <div class="grid grid-cols-4 gap-2">
+            <div class="grid grid-cols-6 gap-2">
                 @foreach ($images as $image)
-                    <div class="thumbnail">
+                    <div class="thumbnail hover:bg-[#]">
                         <!-- Thumbnail Image -->
 
-                        <div style="height: 250px;" class="shadow-md p-3 w-full cursor-pointer">
-                            <div class="flex justify-end">
-                                <div class="w-5 m-5 self-end absolute " onclick="deleteImage('{{ $image->filename }}')">
+                        <div style="height: 200px" class="flex flex-col shadow-lg p-2 w-full cursor-pointer">
+                            <div style="height: 20px" class="h-[20px] flex justify-end">
+                                <div class="w-5 m-5 self-end " onclick="deleteImage('{{ $image->filename }}')">
                                     <svg viewBox="0 0 1024 1024" fill="#ff0000" class="icon" version="1.1"
                                         xmlns="http://www.w3.org/2000/svg" stroke="#ff0000">
                                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -33,48 +62,22 @@
                                     </svg>
                                 </div>
                             </div>
-                            <img class="-fill w-full h-full" onclick="toggleModalx('imageModal{{ $image->id }}')"
-                                src="{{ asset('storage/galleries/' . $image->filename) }}" alt="{{ $image->title }}"
+                            <div class="w-full h-full"
+                                style="background-image: url({{ asset('storage/galleries/' . $image->filename) }}); background-size: cover;"
+                                onclick="toggleModalx('{{ asset('storage/galleries/' . $image->filename) }}')"
                                 data-toggle="modal" data-target="#imageModal{{ $image->id }}">
-                        </div>
 
+                            </div>
+
+                        </div>
 
                         <!--Modal-->
-                        <div id="imageModal{{ $image->id }}"
-                            class="modal absolute opacity-0 pointer-events-none w-full h-full top-0 left-0 flex items-center justify-center">
-                            <div class="modal-overlay absolute w-full h-full  opacity-95"></div>
-                            <div
-                                class="modal-container md:w-1/2 md:h-1/2 w-3/4 h-3/4 z-50 overflow-y-auto  bg-gray-100 shadow-md ">
-
-                                <!-- Add margin if you want to see grey behind the modal-->
-                                <div class="modal-content container mx-auto h-auto text-left p-4">
-                                    <!--Title-->
-                                    <div class="flex justify-between items-center pb-2">
-                                        <p class="text-xl font-bold">Image Preview </p>
-                                        <div onclick="toggleModalx('imageModal{{ $image->id }}')"
-                                            class="modal-close  top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-black text-sm z-50">
-                                            <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg"
-                                                width="18" height="18" viewBox="0 0 18 18">
-                                                <path
-                                                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
-                                                </path>
-                                            </svg>
-                                            (Esc)
-                                        </div>
-                                    </div>
-
-                                    <!--Body-->
-                                    <img src="{{ asset('storage/galleries/' . $image->filename) }}"
-                                        alt="{{ $image->title }}" style="width:100%;">
-                                    <!--Footer-->
-
-                                </div>
-                            </div>
-                        </div>
                         <!-- End of Modal -->
                     </div>
                 @endforeach
+
             </div>
         </div>
+
     </div>
 @endsection
